@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BankProfile</string>
+
+    <!-- Login Activity -->
+    <string name="tvPlaceholder">Username</string>
+    <string name="etPlaceholder">eg. JaneDoe</string>
+    <string name="btnPlaceholder">Continue</string>
+    <string name="imgContentDescription">Banking image logo</string>
+</resources>

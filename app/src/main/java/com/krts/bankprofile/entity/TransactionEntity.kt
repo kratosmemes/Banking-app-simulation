@@ -14,9 +14,12 @@ data class TransactionEntity(
     val cuentaBenefiriario: Int,
     @ColumnInfo(name="monto")
     val monto: Int,
+    @ColumnInfo(name="fecha")
+    val fecha: Long
 ) {
     constructor(
         cuentaOrdenante: Int,
         cuentaBeneficiario: Int,
-        monto: Int): this(0, cuentaOrdenante, cuentaBeneficiario, monto)
+        monto: Int,
+        fecha: Long): this(0, cuentaOrdenante, cuentaBeneficiario, monto, fecha)
 }

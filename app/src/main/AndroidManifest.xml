@@ -19,6 +19,11 @@
             android:exported="true" />
 
         <activity
+            android:name=".TransactionActivity"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

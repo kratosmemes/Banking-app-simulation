@@ -7,8 +7,8 @@ import com.krts.bankprofile.entity.TransactionEntity
 
 @Dao
 interface TransactionDao {
-    @Query("SELECT * FROM TransactionEntity WHERE _id=:_id")
-    fun getTransactionById(_id: Int): TransactionEntity
+    @Query("SELECT * FROM TransactionEntity WHERE id= :id")
+    fun getTransactionById(id: Int): TransactionEntity
 
     @Insert
     fun createTransaction(vararg transaction: TransactionEntity)

@@ -7,16 +7,16 @@ import androidx.room.PrimaryKey
 @Entity
 data class TransactionEntity(
     @PrimaryKey(autoGenerate = true)
-    val _id: Int,
+    val id: Int,
     @ColumnInfo(name="cuenta_ordenante")
-    val cuenta_ordenante: Int,
+    val cuentaOrdenante: Int,
     @ColumnInfo(name="cuenta_beneficiario")
-    val cuenta_benefiriario: Int,
+    val cuentaBenefiriario: Int,
     @ColumnInfo(name="monto")
     val monto: Int,
 ) {
     constructor(
-        cuenta_ordenante: Int,
-        cuenta_benefiriario: Int,
-        monto: Int): this(0, cuenta_ordenante, cuenta_benefiriario, monto)
+        cuentaOrdenante: Int,
+        cuentaBeneficiario: Int,
+        monto: Int): this(0, cuentaOrdenante, cuentaBeneficiario, monto)
 }

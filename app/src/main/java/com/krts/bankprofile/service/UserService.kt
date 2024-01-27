@@ -11,7 +11,7 @@ class UserService {
             context,
             AppDatabase::class.java,
             "padillasbank"
-        ).allowMainThreadQueries().build()
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
 
         return db.userDao()
     }

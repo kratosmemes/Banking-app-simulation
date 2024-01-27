@@ -14,6 +14,9 @@ interface  UserDao {
     @Query("SELECT * FROM UserEntity WHERE username LIKE :username")
     fun getUserByName(username: String): UserEntity
 
+    @Query("UPDATE UserEntity SET balance= :newMonto WHERE _id= :id")
+    fun updateMonto(newMonto: Int, id: Int)
+
     @Insert
     fun createUser(vararg user: UserEntity)
 }

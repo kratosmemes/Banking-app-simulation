@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     //Send user to home screen
     private fun sendToHomeView(etUserName: TextView){
         val intent = Intent(this, HomeActivity::class.java)

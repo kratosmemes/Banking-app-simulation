@@ -2,6 +2,7 @@ package com.krts.bankprofile
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ class HomeActivity: AppCompatActivity() {
         //Widgets
         val tvUserName: TextView = findViewById(R.id.tvUserName)
         val tvBalance: TextView = findViewById(R.id.tvBalance)
+        val llLastestMovements: LinearLayout = findViewById(R.id.llLastestMovements)
 
         val userFromIntent: String = intent.getStringExtra(Constants.USER_NAME).toString()
 
@@ -25,10 +27,11 @@ class HomeActivity: AppCompatActivity() {
         val conection = UserService().obtenerConexion(this)
         val userDataFromDb: UserEntity? = conection.getUserByName(userFromIntent)
         tvBalance.text = userDataFromDb?.balance.toString()
-        println("******************************************************")
-        println(userFromIntent)
-        println(userDataFromDb)
-        println("******************************************************")
-        Toast.makeText(this, "Error al obtener datos del usuario", Toast.LENGTH_SHORT)
+
+        //Setting last movements
+        val textview: TextView = TextView(this)
+        textview.setText("holaaa")
+
+        llLastestMovements.addView(textview)
     }
 }

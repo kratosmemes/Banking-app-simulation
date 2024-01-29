@@ -72,16 +72,12 @@ class HomeActivity: AppCompatActivity() {
 
         //Setting each transactions to latest LinearLayout widget
         lastFiveTransactionsSent.forEach{item->
-            val card = CardView(this)
-            val textViewAmount = TextView(this)
-            val textViewDate = TextView(this)
-
-            val date = Date(item.fecha).toString().substring(0, 19)
-
-            textViewAmount.layoutParams = amountViewLayoutParams
-            textViewAmount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
-            textViewAmount.text = "$${item.monto}"
-            llLatestMovementsSent.addView(textViewAmount)
+            val date = Date(item.fecha).toString().substring(0, 11)
+            val textview = TextView(this)
+            textview.layoutParams = amountViewLayoutParams
+            textview.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+            textview.text = "$${item.monto} on ${date}"
+            llLatestMovementsSent.addView(textview)
         }
 
         lastFiveTransactionsReceived.forEach{item->
@@ -89,7 +85,7 @@ class HomeActivity: AppCompatActivity() {
             val textview = TextView(this)
             textview.layoutParams = amountViewLayoutParams
             textview.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
-            textview.text = "$${item.monto}                       ${date}"
+            textview.text = "$${item.monto} on ${date}"
             llLatestMovementsReceived.addView(textview)
         }
 

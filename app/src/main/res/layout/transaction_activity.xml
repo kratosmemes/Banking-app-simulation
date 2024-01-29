@@ -6,27 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <TextView
-        android:id="@+id/tvNewTransaction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="68dp"
-        android:text="New Transaction"
-        android:textSize="35sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/tvSignOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
-        android:text="SignOut"
+        android:text="@string/tvSignOut"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.911"
@@ -34,13 +20,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvNewTransaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/tvNewTransaction"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvOrderingAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="Ordering account"
+        android:text="@string/tvOrderingAccount"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -48,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvNewTransaction" />
 
     <TextView
-        android:id="@+id/etOrdenante"
+        android:id="@+id/tvOrderingAccountNotChangeable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -59,42 +58,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="Monto"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etBeneficiario" />
+        app:layout_constraintTop_toBottomOf="@+id/tvOrderingAccount" />
 
     <EditText
-        android:id="@+id/etMonto"
+        android:id="@+id/etBeneficiaryAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:hint="Amount"
-        android:inputType="number"
-    app:layout_constraintTop_toBottomOf="@+id/textView5"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <EditText
-        android:id="@+id/etBeneficiario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:inputType="text"
         android:layout_marginTop="4dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:hint="Eg. Account2"
+        android:hint="@string/etBeneficiaryAccountHint"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -105,12 +79,38 @@
         android:layout_marginTop="60dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="Beneficiary account"
+        android:text="@string/tvBeneficiaryAccount"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etOrdenante" />
+        app:layout_constraintTop_toBottomOf="@+id/tvOrderingAccountNotChangeable" />
+
+    <TextView
+        android:id="@+id/tvAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/tvAmount"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etBeneficiaryAccount" />
+
+    <EditText
+        android:id="@+id/etMonto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="@string/etAmountHint"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/tvAmount"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/btnContinue"
@@ -118,7 +118,7 @@
         android:layout_height="75dp"
         android:layout_marginTop="92dp"
         android:layout_marginEnd="28dp"
-        android:text="Continuar"
+        android:text="@string/btnContinue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etMonto"
@@ -129,7 +129,7 @@
         android:layout_width="149dp"
         android:layout_height="75dp"
         android:layout_marginTop="92dp"
-        android:text="Cancelar"
+        android:text="@string/btnCancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnContinue"
         app:layout_constraintHorizontal_bias="0.317"

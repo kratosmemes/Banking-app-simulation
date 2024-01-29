@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.krts.bankprofile.entity.TransactionEntity
+import com.krts.bankprofile.entity.UserEntity
 import com.krts.bankprofile.service.TransactionService
 import com.krts.bankprofile.service.UserService
 import java.sql.Date
@@ -18,7 +19,8 @@ class TransactionActivity: AppCompatActivity() {
         setContentView(R.layout.transaction_activity)
 
         //Widgets
-        val etBeneficiaryAccount:   EditText? = findViewById(R.id.etBeneficiario)
+        val tvOrderingAccount:      TextView = findViewById(R.id.tvOrderingAccountNotChangeable)
+        val etBeneficiaryAccount:   EditText? = findViewById(R.id.etBeneficiaryAccount)
         val etBalance:              EditText? = findViewById(R.id.etMonto)
         val btnCancel:              Button = findViewById(R.id.btnCancel)
         val btnContinue:            Button = findViewById(R.id.btnContinue)
@@ -30,6 +32,7 @@ class TransactionActivity: AppCompatActivity() {
 
         //Intent variable
         val userFromIntent: String = intent.getStringExtra(Constants.USER_NAME).toString()
+        tvOrderingAccount.text = userFromIntent
 
         //Transaction functionality
         btnContinue.setOnClickListener {

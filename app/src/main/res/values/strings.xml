@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">BankProfile</string>
+    <!-- Global -->
+    <string name="tvSignOut">SignOut</string>
 
     <!-- Login Activity -->
     <string name="tvPlaceholder">Username</string>
@@ -7,14 +9,22 @@
     <string name="btnPlaceholder">Continue</string>
     <string name="imgContentDescription">Banking image logo</string>
 
-    <!-- New Transaction Activity -->
+    <!-- New Home Activity -->
     <string name="tvYourCard">Your card</string>
     <string name="tvDefaultUser">DefaultUser</string>
     <string name="tvActualBalance">Actual balance</string>
     <string name="tvDefaultBalance">00.00</string>
     <string name="tvLatestReceived">Latest received movements</string>
     <string name="tvLatestSent">Latest sent movement</string>
-    <string name="tvSignOut">SignOut</string>
     <string name="btnTransfer">Transfer</string>
 
+    <!-- New Transaction Activity -->
+    <string name="tvNewTransaction">New transaction</string>
+    <string name="tvOrderingAccount">Ordering account</string>
+    <string name="tvAmount">Amount</string>
+    <string name="etAmountHint">Eg. 100</string>
+    <string name="etBeneficiaryAccountHint">Eg. jane_doe</string>
+    <string name="tvBeneficiaryAccount">Beneficiary account</string>
+    <string name="btnContinue">Continue</string>
+    <string name="btnCancel">Cancel</string>
 </resources>

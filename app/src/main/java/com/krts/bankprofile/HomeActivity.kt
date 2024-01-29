@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.DialogFragment
 import com.krts.bankprofile.dao.TransactionDao
 import com.krts.bankprofile.dao.UserDao
@@ -27,68 +28,69 @@ class HomeActivity: AppCompatActivity() {
         setContentView(R.layout.home_activity)
 
         //Widgets
-        val tvUserName: TextView = findViewById(R.id.tvUserName)
-        val tvBalance: TextView = findViewById(R.id.tvBalance)
-        val llLastestMovementsSent: LinearLayout = findViewById(R.id.llLastestMovementsSent)
-        val llLastestMovementsRecibed: LinearLayout = findViewById(R.id.llLastestMovementsRecived)
-        val btnTransferir: Button = findViewById(R.id.btnTransferir)
-        val btnSignOut: TextView = findViewById(R.id.tvSingOut)
+        val tvUserName                  :TextView = findViewById(R.id.tvUserName)
+        val tvBalance                   :TextView = findViewById(R.id.tvBalance)
+        val llLatestMovementsSent       :LinearLayout = findViewById(R.id.llLatestMovementsSent)
+        val llLatestMovementsReceived   :LinearLayout = findViewById(R.id.llLatestMovementsReceived)
+        val btnTransfer                 : Button = findViewById(R.id.btnTransfer)
+        val btnSignOut                  : TextView = findViewById(R.id.tvSingOut)
 
-        val fragmentManager = supportFragmentManager
-
-        val intflater = this.layoutInflater
+        //Intent values
         val userFromIntent: String = intent.getStringExtra(Constants.USER_NAME).toString()
-
         tvUserName.text = intent.getStringExtra(Constants.USER_NAME)
 
         //Getting user data
-        val conection = UserService().obtenerConexion(this)
-        val userDataFromDb: UserEntity? = conection.getUserByName(userFromIntent)
+        val connection = UserService().getConnection(this)
+        val userDataFromDb: UserEntity? = connection.getUserByName(userFromIntent)
         tvBalance.text = "$${userDataFromDb?.balance.toString()}"
 
-        //Tranferir boton
-        btnTransferir.setOnClickListener {
+        //Transfer button
+        btnTransfer.setOnClickListener {
             val intent = Intent(this, TransactionActivity::class.java)
             intent.putExtra(Constants.USER_NAME, userFromIntent)
             startActivity(intent)
             finish()
         }
 
-        //Setting last movements
-        val transactionConnection = TransactionService().obtenerConexion(this)
-        val transactionsSent =
-            transactionConnection.getTransactionsByCustomerIdSent(userDataFromDb!!._id)
-                .sortedByDescending { it.fecha }
-        val transactionsRecived =
-            transactionConnection.getTransactionsByCustomerIdRecived(userDataFromDb!!._id)
-                .sortedByDescending { it.fecha }
-        val transactions2 = transactionConnection.getAll().sortedByDescending { it.fecha }
-        val lastFiveTransactionsSent = transactionsSent.subList(0, transactionsSent.size).take(5)
-
-        val layoutParams = LinearLayout.LayoutParams(
+        //Style for each programmatically inserted view in LinearLayout
+        val amountViewLayoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
-        layoutParams.setMargins(20, 3, 0, 0)
+        amountViewLayoutParams.setMargins(20, 3, 0, 0)
 
+        /* --------------------------------------------------------------------------- */
+        /* --------------------------- Latest transactions --------------------------- */
+        /* --------------------------------------------------------------------------- */
+
+        //Getting latest transactions from DB
+        val transactionConnection = TransactionService().getConnection(this)
+        val transactionsSent = transactionConnection.getTransactionsByCustomerIdSent(userDataFromDb!!._id).sortedByDescending { it.fecha }
+        val transactionsReceived = transactionConnection.getTransactionsByCustomerIdRecived(userDataFromDb!!._id).sortedByDescending { it.fecha }
+        val lastFiveTransactionsSent = transactionsSent.subList(0, transactionsSent.size).take(5)
+        val lastFiveTransactionsReceived = transactionsReceived.subList(0, transactionsReceived.size).take(5)
+
+        //Setting each transactions to latest LinearLayout widget
         lastFiveTransactionsSent.forEach{item->
-            val date = Date(item.fecha)
-            val textview: TextView = TextView(this)
-            textview.layoutParams = layoutParams
-            textview.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
-            textview.setText("$${item.monto} ----- ${date}")
-            llLastestMovementsSent.addView(textview)
+            val card = CardView(this)
+            val textViewAmount = TextView(this)
+            val textViewDate = TextView(this)
+
+            val date = Date(item.fecha).toString().substring(0, 19)
+
+            textViewAmount.layoutParams = amountViewLayoutParams
+            textViewAmount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+            textViewAmount.text = "$${item.monto}"
+            llLatestMovementsSent.addView(textViewAmount)
         }
 
-        val lastFiveTransactionsRecived = transactionsRecived.subList(0, transactionsRecived.size).take(5)
-
-        lastFiveTransactionsRecived.forEach{item->
-            val date = Date(item.fecha)
-            val textview: TextView = TextView(this)
-            textview.layoutParams = layoutParams
+        lastFiveTransactionsReceived.forEach{item->
+            val date = Date(item.fecha).toString().substring(0, 11)
+            val textview = TextView(this)
+            textview.layoutParams = amountViewLayoutParams
             textview.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
-            textview.setText("$${item.monto} ----- ${date}")
-            llLastestMovementsRecibed.addView(textview)
+            textview.text = "$${item.monto}                       ${date}"
+            llLatestMovementsReceived.addView(textview)
         }
 
         btnSignOut.setOnClickListener{

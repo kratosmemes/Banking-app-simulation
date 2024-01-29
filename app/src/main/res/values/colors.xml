@@ -8,5 +8,5 @@
     <color name="loginGreen">#8BC34A</color>
 
     <!-- Home Colors-->
-    <color name="transferirButton">#418ED3</color>
+    <color name="transferButton">#418ED3</color>
 </resources>

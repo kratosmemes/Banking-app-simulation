@@ -7,7 +7,7 @@ import com.krts.bankprofile.dao.TransactionDao
 import com.krts.bankprofile.dao.UserDao
 
 class TransactionService {
-    fun obtenerConexion(context: Context): TransactionDao {
+    fun getConnection(context: Context): TransactionDao {
         val db = Room.databaseBuilder(
                 context,
                 AppDatabase::class.java,

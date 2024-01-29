@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -24,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
-        android:text="Tu tarjeta"
+        android:text="@string/tvYourCard"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +50,7 @@
             android:layout_marginStart="200dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:text="UserName"
+            android:text="@string/tvDefaultUser"
             android:textAlignment="textEnd"
             android:textSize="20sp" />
 
@@ -60,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="80dp"
-            android:text="Saldo actual"
+            android:text="@string/tvActualBalance"
             android:textSize="15sp" />
 
         <TextView
@@ -69,18 +68,18 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="94dp"
-            android:text="$00.00"
+            android:text="@string/tvDefaultBalance"
             android:textSize="40sp" />
 
         <Button
-            android:id="@+id/btnTransferir"
+            android:id="@+id/btnTransfer"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="200dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/transferirButton"
-            android:text="Transferir"
+            android:background="@color/transferButton"
+            android:text="@string/btnTransfer"
             android:textColor="@color/white" />
 
     </androidx.cardview.widget.CardView>
@@ -91,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
-        android:text="Ultimos movimientos realizados"
+        android:text="@string/tvLatestSent"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -99,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/CardFloatingCard" />
 
     <LinearLayout
-        android:id="@+id/llLastestMovementsSent"
+        android:id="@+id/llLatestMovementsSent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -115,14 +114,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:text="Ultimos movimientos recibidos"
+        android:text="@string/tvLatestReceived"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llLastestMovementsSent" />
+        app:layout_constraintTop_toBottomOf="@+id/llLatestMovementsSent" />
 
     <LinearLayout
-        android:id="@+id/llLastestMovementsRecived"
+        android:id="@+id/llLatestMovementsReceived"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -142,7 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="SignOut"
+        android:text="@string/tvSignOut"
         android:textAlignment="textEnd"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"

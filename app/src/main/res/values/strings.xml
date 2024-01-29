@@ -6,4 +6,15 @@
     <string name="etPlaceholder">eg. JaneDoe</string>
     <string name="btnPlaceholder">Continue</string>
     <string name="imgContentDescription">Banking image logo</string>
+
+    <!-- New Transaction Activity -->
+    <string name="tvYourCard">Your card</string>
+    <string name="tvDefaultUser">DefaultUser</string>
+    <string name="tvActualBalance">Actual balance</string>
+    <string name="tvDefaultBalance">00.00</string>
+    <string name="tvLatestReceived">Latest received movements</string>
+    <string name="tvLatestSent">Latest sent movement</string>
+    <string name="tvSignOut">SignOut</string>
+    <string name="btnTransfer">Transfer</string>
+
 </resources>

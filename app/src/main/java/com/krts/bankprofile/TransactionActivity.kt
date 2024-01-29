@@ -17,55 +17,57 @@ class TransactionActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.transaction_activity)
 
-        //Base de datos
-        val transactionConnection = TransactionService().obtenerConexion(this)
-        val userConnection = UserService().obtenerConexion(this)
+        //Widgets
+        val etBeneficiaryAccount:   EditText? = findViewById(R.id.etBeneficiario)
+        val etBalance:              EditText? = findViewById(R.id.etMonto)
+        val btnCancel:              Button = findViewById(R.id.btnCancel)
+        val btnContinue:            Button = findViewById(R.id.btnContinue)
+        val btnSignOut:             TextView = findViewById(R.id.tvSignOut)
+
+        //Database connections
+        val transactionConnection = TransactionService().getConnection(this)
+        val userConnection = UserService().getConnection(this)
 
         //Intent variable
         val userFromIntent: String = intent.getStringExtra(Constants.USER_NAME).toString()
 
-
-
-        //Widgets
-        val tvCuentaOrdenante: TextView = findViewById(R.id.etOrdenante)
-        val etCuentaBeneficiario: EditText? = findViewById(R.id.etBeneficiario)
-        val etMonto: EditText? = findViewById(R.id.etMonto)
-        val btnCancel: Button = findViewById(R.id.btnCancel)
-        val btnContinue: Button = findViewById(R.id.btnContinue)
-        val btnSignOut: TextView = findViewById(R.id.tvSignOut)
-
-        //
-        tvCuentaOrdenante.text = userFromIntent
-
+        //Transaction functionality
         btnContinue.setOnClickListener {
-            val beneficiario = userConnection.getUserByName(etCuentaBeneficiario?.text.toString())
-            val ordenante = userConnection.getUserByName(userFromIntent)
+            val beneficiary = userConnection.getUserByName(etBeneficiaryAccount?.text.toString())
+            val ordering  = userConnection.getUserByName(userFromIntent)
 
-
-
-            if(etCuentaBeneficiario?.text.toString().equals("") || etMonto?.text.toString().equals("")){
-                Toast.makeText(this, "Debes llenar todos los campos", Toast.LENGTH_SHORT).show()
-            }else if(beneficiario == null){
-                Toast.makeText(this, "El usuario beneficiario no existe", Toast.LENGTH_SHORT).show()
-            }else if(ordenante.balance < etMonto?.text.toString().toInt()){
-                Toast.makeText(this, "No cuentas con los fondos suficientes para la transacción", Toast.LENGTH_SHORT).show()
+            if(
+                etBeneficiaryAccount?.text.toString() == "" || etBalance?.text.toString() == ""){
+                Toast.makeText(this, "You must fill all the blanks", Toast.LENGTH_SHORT).show()
+            }else if(beneficiary == null){
+                Toast.makeText(this, "Beneficiary user doest not exists", Toast.LENGTH_SHORT).show()
+            }else if(ordering.balance < etBalance?.text.toString().toInt()){
+                Toast.makeText(this, "You do not have sufficient funds", Toast.LENGTH_SHORT).show()
             }else {
+
+                //New transaction object
                 val newTransaction = TransactionEntity(
-                    ordenante._id,
-                    beneficiario._id,
-                    etMonto?.text.toString().toInt(),
+                    ordering._id,
+                    beneficiary._id,
+                    etBalance?.text.toString().toInt(),
                     System.currentTimeMillis()
                 )
 
-                transactionConnection.createTransaction(newTransaction)
-                userConnection.updateMonto(
-                    (ordenante.balance) - (etMonto?.text.toString().toInt()),
-                    ordenante._id
-                )
-                userConnection.updateMonto(
-                    (beneficiario.balance) + (etMonto?.text.toString().toInt()), beneficiario._id
-                )
+                try {
+                    transactionConnection.createTransaction(newTransaction)
+                    userConnection.updateMonto(
+                        (ordering.balance) - (etBalance?.text.toString().toInt()),
+                        ordering._id
+                    )
+                    userConnection.updateMonto(
+                        (beneficiary.balance) + (etBalance?.text.toString().toInt()),
+                        beneficiary._id
+                    )
+                }catch (ex: Exception){
+                    Toast.makeText(this, "There has been an error with the transaction", Toast.LENGTH_SHORT).show()
+                }
 
+                //Intent to switch to Home Screen
                 val intent = Intent(this, HomeActivity::class.java)
                 intent.putExtra(Constants.USER_NAME, userFromIntent)
                 startActivity(intent)
